@@ -1,0 +1,58 @@
+.header
+{
+    height: 85vh; /* vh: viewport height */
+    background-image: linear-gradient(
+        to right bottom, 
+        rgba($color-primary-light, .8), 
+        rgba($color-primary-dark, .8)), 
+        url("../img/hero-small.jpg"); /*اللون هيتدرج من الشمال لليمين*/ /*عندنا صورتين...الاولي اللون وفوقها الصورة */
+    background-size: cover;
+    background-position: top;
+    position: relative;
+
+    
+
+    @supports (clip-path: polygon(0 0)) or (-webkit-clip-path: polygon(0 0))
+    {
+        clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+        /* clip-path: polygon(0% 20%, 60% 20%, 60% 0%, 100% 50%, 60% 100%, 60% 80%, 0% 80%); */ /* use this site to make a beautiful shape   https://bennettfeely.com/clippy/ */
+        height: 95vh;
+    }
+
+    @media only screen and (min-resolution: 192dpi) and (min-width: 37.4em /* 600px */),  // dpi: dots per inch // for high resolution
+           only screen and (-webkit-min-device-pixel-ratio: 2) and (min-width: 37.4em),
+           only screen and (min-width: 125em /* 2000px */) // or for big desktops
+    {
+        background-image: linear-gradient(
+            to right bottom, 
+            rgba($color-primary-light, .8), 
+            rgba($color-primary-dark, .8)), 
+            url("../img/hero.jpg");
+    }
+
+
+    @include respond(phone)
+    {
+        clip-path: polygon(0 0, 100% 0, 100% 85vh, 0 100%);
+    }
+
+    &__logo-box // it's equal to this .header__logo-box
+    {
+        position: absolute;
+        top: 4rem;   /* 1rem = root(html) font-size = 10px */
+        left: 4rem;  
+    }
+    &__logo
+    {
+        height: 3.5rem;   /* 1rem = root(html) font-size = 10px */
+    }
+    &__text-box
+    {
+        /* Center an element inthe middle ofthe screen */
+        position: absolute;
+        top: 40%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+    }
+}

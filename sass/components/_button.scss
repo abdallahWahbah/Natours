@@ -1,0 +1,96 @@
+.btn
+{
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 1.5rem 4rem;
+    display: inline-block;  /* if you wanted to add padding, height or width to an element, it should be a block one */
+    border-radius: 10rem;
+    transition: all .2s;
+    position: relative;
+    font-size: $default-font-size;
+
+    // change for the <button> element
+    border:none;
+    cursor: pointer;
+
+    &:hover
+    {
+        transform: translateY(-3px);
+        box-shadow: 0 1rem 2rem rgba($color-black, .2);
+        &::after
+        {
+            transform: scaleX(1.4) scaleY(1.6);
+            opacity: 0;
+        }
+    }
+
+    &:active, &__focus
+    {
+        outline: none;
+        transform: translateY(-1px);
+        box-shadow: 0 .5rem 1rem rgba($color-black, .2);
+    }
+    
+    &--white
+    {
+        background-color: $color-white;
+        color: $color-gray-dark;
+        &::after
+        {
+            background-color: $color-white;
+        }
+    }
+    &--green
+    {
+        background-color: $color-primary;
+        color: $color-white;
+        &::after
+        {
+            background-color: $color-primary;
+        }
+    }
+
+    /* الفكرة اننا بنعمل عنصر زي الزرار بالظبط وبنحطه وراه....ولما نقف عليه بنكبره ونخفيه */
+    &::after /* psuedo element is a child of the element */
+    {
+        content: "";
+        display: inline-block;
+        height: 100%;
+        width: 100%;
+        border-radius: 10rem;
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: -1;
+        transition: all .4s;
+    }
+    
+    &--animated
+    {
+        animation: moveInBottom .5s ease-out .75s; /* the forth value is for delay */
+        animation-fill-mode: backwards; /* this automatically applies the styles on 0% before the animation starts*/ /* we wrote this line because the button was not hidden at the start, and we have opacity of 0 at 0%*/
+    }
+}
+
+.btn-text
+{
+    font-size: $default-font-size;
+    color: $color-primary;
+    display: inline-block; // عشان الانكور عنصر انلاين ...مش هنعرف نضيف بادينح او مارجين الا لو كان بلوك...فهنخليها انلاين بلوك
+    text-decoration: none;
+    border-bottom: 1px solid $color-primary;
+    padding: 3px;
+    transition: all .2s;
+    &:hover
+    {
+        background: $color-primary;
+        color: $color-white;
+        box-shadow: 0 1rem 2rem rgba($color-black, .15);
+        transform: translateY(-2px);
+    }
+    &:active
+    {
+        box-shadow: 0 .5rem 1rem rgba($color-black, .15);
+        transform: translateY(0);
+    }
+}
